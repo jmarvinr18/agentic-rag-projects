@@ -17,10 +17,15 @@ log = app.logger
 
 _llm = None
 
+
 def get_or_create_model():
     global _llm
+
     if _llm is None:
         _llm = load_model()
+
+    print(f"LLM: {_llm}")
+
     return _llm
 
 
@@ -31,6 +36,12 @@ You are a helpful assistant. Use tools when appropriate.
 
 
 # Define a simple function tool
+@tool
+def add_numbers(a: int, b: int) -> int:
+    """Return the sum of two numbers"""
+    return a + b
+
+
 @tool
 def add_numbers(a: int, b: int) -> int:
     """Return the sum of two numbers"""
@@ -61,10 +72,12 @@ def touch_thread(thread_id):
     _thread_ids[thread_id] = True
 
 
-
 @app.entrypoint
 async def invoke(payload, context):
     log.info("Invoking Agent.....")
+
+    print(f"PAYLOAD: {payload}")
+    print(f"CONTEXT: {context}")
 
     # Get MCP Client
     mcp_client = get_streamable_http_mcp_client()

@@ -1,3 +1,17 @@
 {
-  "targets": {}
+  "targets": {
+    "default": {
+      "resources": {
+        "runtimes": {
+          "DezrAgents": {
+            "runtimeId": "DezrAgents_DezrAgents-jGCksG2iMC",
+            "runtimeArn": "arn:aws:bedrock-agentcore:ap-southeast-1:624504148254:runtime/DezrAgents_DezrAgents-jGCksG2iMC",
+            "roleArn": "arn:aws:iam::624504148254:role/AgentCore-DezrAgents-defa-ApplicationAgentDezrAgent-GtrFXX8qX1qH"
+          }
+        },
+        "stackName": "AgentCore-DezrAgents-default",
+        "deployHash": "897d596f4ae2ef51"
+      }
+    }
+  }
 }
