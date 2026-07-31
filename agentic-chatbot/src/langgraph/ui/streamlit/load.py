@@ -1,7 +1,8 @@
 import streamlit as st
 import os
 from src.langgraph.ui.config import Config
-
+from dotenv import load_dotenv
+load_dotenv()
 
 class LoadStreamlitUI:
     def __init__(self):
@@ -45,7 +46,8 @@ class LoadStreamlitUI:
 
 
             if self.user_controls["selected_usecase"] == "Chatbot with Tool":
-                tavily_api_key = st.text_input("TAVILY API KEY", type="password")
+                # tavily_api_key = st.text_input("TAVILY API KEY", type="password")
+                tavily_api_key = os.getenv("TAVILY_API_KEY")
                 st.session_state["TAVILY_API_KEY"] = tavily_api_key
                 self.user_controls["TAVILY_API_KEY"] = tavily_api_key
                 os.environ["TAVILY_API_KEY"] = tavily_api_key

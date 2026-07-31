@@ -3,6 +3,8 @@ from src.langgraph.ui.streamlit.load import LoadStreamlitUI
 from src.langgraph.llms.groq import GroqLLM
 from src.langgraph.graph.graph_builder import GraphBuilder
 from src.langgraph.ui.streamlit.display_result import DisplayResult
+
+
 def load_langgraph_agenticai_app():
     """
         Loads and runs the LangGraph Agentic AI application with Streamlit UI.
