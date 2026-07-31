@@ -1,0 +1,37 @@
+flask
+langchain
+python-dotenv
+bedrock-agentcore==0.1.4
+boto3==1.40.35
+
+# langchain_community
+# langchain-openai
+# langchain-groq
+# python-dotenv
+# langchain-google-genai
+# ipykernel
+# streamlit
+# langchain-ollama
+# flask-smorest
+# flask-marshmallow
+# sqlalchemy
+# flask-sqlalchemy
+# psycopg2-binary 
+# pgvector 
+# sqlalchemy-utils
+# shortuuid
+# redis 
+# flask-caching
+# langchain_huggingface
+# sentence_transformers
+# chromadb
+# langchain_chroma
+# pypdf
+# langchain-postgres
+# rq
+# Flask-Migrate
+# streamlit[pdf]
+# langchain[aws]
+# langchain-text-splitters 
+# nltk
+# rank_bm25
