@@ -15,9 +15,7 @@ class GroqLLM:
         try:
             # groq_api_key = self.user_controls_input["GROQ_API_KEY"]
             groq_api_key = os.getenv("GROQ_API_KEY")
-
             selected_groq_model = self.user_controls_input["selected_groq_model"]
-
             if groq_api_key == "" and os.environ["GROQ_API_KEY"] == "":
                 st.error("Please enter the Groq API Key")
 
