@@ -10,8 +10,11 @@ class LoadStreamlitUI:
         self.user_controls={}
 
     def load_streamlit_ui(self):
-        st.set_page_config(page_title=f"AI {self.config.get_page_title()}", layout="wide")
-        st.header(f"AI {self.config.get_page_title()}")
+        st.session_state.IsFetchButtonClicked = False
+        st.session_state.timeframe = "Daily"
+        st.set_page_config(page_title=f"🤖 {self.config.get_page_title()}", layout="wide")
+        st.header(f"🤖 {self.config.get_page_title()}")
+        
 
         with st.sidebar:
             # Get options from config
@@ -29,7 +32,7 @@ class LoadStreamlitUI:
 
                 # Validate API Key
                 if not self.user_controls["GROQ_API_KEY"]:
-                    st.warning(" Please enter your GROQ API key to proceed. Don't have?")
+                    st.warning("⚠️ Please enter your GROQ API key to proceed. Don't have?")
 
             if self.user_controls["selected_llm"] == "Claude":
                 # Model selection
@@ -39,13 +42,13 @@ class LoadStreamlitUI:
 
                 # Validate API Key
                 if not self.user_controls["CLAUDE_API_KEY"]:
-                    st.warning(" Please enter your CLAUDE API key to proceed. Don't have?")
+                    st.warning("⚠️ Please enter your CLAUDE API key to proceed. Don't have?")
 
             ## Use case selection
             self.user_controls["selected_usecase"] = st.selectbox("Select Use Case", usecase_options)
 
 
-            if self.user_controls["selected_usecase"] == "Chatbot with Tool":
+            if self.user_controls["selected_usecase"] == "Chatbot with Tool" or self.user_controls["selected_usecase"] == "AI News":
                 # tavily_api_key = st.text_input("TAVILY API KEY", type="password")
                 tavily_api_key = os.getenv("TAVILY_API_KEY")
                 st.session_state["TAVILY_API_KEY"] = tavily_api_key
@@ -54,5 +57,18 @@ class LoadStreamlitUI:
 
                 if not self.user_controls["TAVILY_API_KEY"]:
                     st.warning("Please enter your TAVILY_API_KEY key to proceed.")
+
+            if self.user_controls["selected_usecase"] == "AI News":
+                st.subheader("📰 AI News Explorer")
+
+                with st.sidebar:
+                    time_frame = st.selectbox(
+                        "🗓️ Select Time Frame", ["Daily","Weekly", "Monthly", "Yearly"],
+                        index=0
+                    )
+                    st.session_state.timeframe = time_frame
+                if st.button("🔎 Fetch Latest AI News", use_container_width=True):
+                    st.session_state.IsFetchButtonClicked = True
+                    
 
         return self.user_controls

@@ -45,6 +45,7 @@ class DisplayResult:
                         
                         toolres = json.loads(message.content)
                         for res in toolres:
+                            st.write(res)
                             st.write(res["title"])
                             st.write(res["content"])
                             st.write(res["url"])
@@ -53,3 +54,27 @@ class DisplayResult:
                 elif type(message) == AIMessage and message.content:
                     with st.chat_message("assistant"):
                         st.write(message.content)
+
+        elif usecase == "AI News":
+
+            frequency = st.session_state.timeframe
+            
+            print(f"FREQUENCY ON DISPLAY: {frequency}")
+
+            with st.spinner("Fetching and summarizing news...⏱️"):
+                result = graph.invoke({"messages": user_message})
+
+                print(f"RESULT ON DISPLAY: {result}")
+                try:
+                    # Read the markdown file
+                    AI_NEWS_PATH = f"./AINews/{frequency.lower()}_summary.md"
+
+                    with open(AI_NEWS_PATH, "r") as file:
+                        markdown_content = file.read()
+
+                    # Display the markdown content in Streamlit
+                    st.markdown(markdown_content, unsafe_allow_html=True)
+                except FileNotFoundError:
+                    st.error(f"News Not Generated or File not Found: {AI_NEWS_PATH}")
+                except Exception as e:
+                    st.error(f"An error occured: {str(e)}")

@@ -22,9 +22,15 @@ def load_langgraph_agenticai_app():
         st.error("Error: Failed to load user input from ui")
         return
 
-    user_message = st.chat_input("Enter your message: ")
 
+    # if st.session_state.IsFetchButtonClicked:
+    #     user_message = st.session_state.timeframe
+    # else:
+    #     user_message = st.chat_input("Enter your message: ")
+
+    user_message = st.chat_input("Enter your message: ")
     if user_message:
+
         try:
             obj_llm_config=GroqLLM(user_controls_input=user_input)
             model=obj_llm_config.get_llm_model()
@@ -43,13 +49,15 @@ def load_langgraph_agenticai_app():
 
             try:
                 graph=graph_builder.setup_graph(usecase)
+
+                print(f"GRAPH: {graph}")
                 DisplayResult(usecase,graph,user_message).display_on_ui()
 
             except Exception as e:
-                st.error(f"Error: Graph set up failed- {e}")
+                st.error(f"Error: Graph set up failed - {e}")
                 return
             
         except Exception as e:
-            st.error(f"Error: Graph set up failed- {e}")
+            st.error(f"Error occured during invoke - {e}")
             return
 
