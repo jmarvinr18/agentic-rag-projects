@@ -62,6 +62,7 @@ class DisplayResult:
             print(f"FREQUENCY ON DISPLAY: {frequency}")
 
             with st.spinner("Fetching and summarizing news...⏱️"):
+                
                 result = graph.invoke({"messages": user_message})
 
                 print(f"RESULT ON DISPLAY: {result}")
