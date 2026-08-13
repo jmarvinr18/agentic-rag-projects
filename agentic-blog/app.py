@@ -2,6 +2,8 @@ import uvicorn
 from fastapi import FastAPI, Request
 from src.graphs.builder import GraphBuilder
 from src.llms.groq import GroqLLM
+import sys
+sys.pycache_prefix = '/.cache/pycache'
 
 
 import os

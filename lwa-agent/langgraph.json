@@ -1,0 +1,12 @@
+{
+  "graphs": {
+    "agent_graph": {
+      "path": "app.graphs.builder:graph"
+    }
+  },
+  "env": ".env",
+  "source": {
+    "kind": "uv",
+    "root": "."
+  }
+}

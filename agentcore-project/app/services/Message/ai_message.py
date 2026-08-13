@@ -71,10 +71,10 @@ class AIMessageService:
     def getSessionHistory(self, conversation_id: str="") -> BaseChatMessageHistory:
 
         history = InMemoryChatMessageHistory()
-        messsages = (Message.query.filter_by(conversation_id=conversation_id)
+        messages = (Message.query.filter_by(conversation_id=conversation_id)
                                   .order_by(Message.created_at)
                                   .all())
-        for m in messsages:
+        for m in messages:
             if m.role == "user":
                 history.add_message(message=HumanMessage(content=m.content))
 

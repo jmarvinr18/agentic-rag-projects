@@ -1,0 +1,17 @@
+flask
+langchain
+langchain_community
+langchain-openai
+langchain-groq
+python-dotenv
+flask-smorest
+flask-marshmallow
+sqlalchemy
+flask-sqlalchemy
+ipykernel
+flask_smorest
+sqlalchemy-utils
+langchain_openai
+langgraph-cli[inmem]
+wikipedia
+boto3

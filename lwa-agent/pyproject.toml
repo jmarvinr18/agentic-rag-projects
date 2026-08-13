@@ -1,0 +1,25 @@
+[project]
+name = "lwa-agent"
+version = "0.1.0"
+description = "LangGraph Agent with RAG"
+requires-python = ">=3.9"
+
+dependencies = [
+    "flask",
+    "langchain",
+    "langchain_community",
+    "langchain-openai",
+    "langchain-groq",
+    "python-dotenv",
+    "flask-smorest",
+    "flask-marshmallow",
+    "sqlalchemy",
+    "flask-sqlalchemy",
+    "sqlalchemy-utils",
+    "langgraph",
+    "ipykernel",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
