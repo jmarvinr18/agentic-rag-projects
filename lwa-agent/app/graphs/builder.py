@@ -1,17 +1,17 @@
+from IPython.display import Image, display
+from app.tools.wikisearch import wikisearch
+from app.tools.web_browse import get_tools, create_tool_node
+from app.tools.math_operations import add, multiply
+from app.tools.retriever import retriever_tool
+from langgraph.prebuilt import tools_condition
+from langgraph.prebuilt import ToolNode
+from app.nodes.agent_node import AgentNode
+from app.states.agentstate import AgentState
+from app.llms.groq import GroqLLM
+from langgraph.graph import StateGraph, START, END
 from dotenv import load_dotenv
 load_dotenv()
 
-from langgraph.graph import StateGraph, START, END
-from app.llms.groq import GroqLLM
-from app.states.agentstate import AgentState
-from app.nodes.agent_node import AgentNode
-from langgraph.prebuilt import ToolNode
-from langgraph.prebuilt import tools_condition
-from app.tools.retriever import retriever_tool
-from app.tools.math_operations import add, multiply
-from app.tools.web_browse import get_tools, create_tool_node
-from app.tools.wikisearch import wikisearch
-from IPython.display import Image, display
 
 class GraphBuilder:
     def __init__(self, llm):
@@ -25,21 +25,21 @@ class GraphBuilder:
         Build a graph to generate blogs based on topic
         """
 
-
         self.agent_node_obj = AgentNode()
 
-        ## Nodes
+        # Nodes
         # Define the nodes we will cycle between
         self.graph.add_node("agent", self.agent_node_obj.invoke_agent)
 
         # agent
-        toolnode = ToolNode([retriever_tool(), add, multiply, get_tools()], handle_tool_errors=True)
+        toolnode = ToolNode(
+            [retriever_tool(), add, multiply, get_tools()], handle_tool_errors=True)
 
         self.graph.add_node("retrieve_tool", toolnode)
 
-
         # retrieval
-        self.graph.add_node("rewrite", self.agent_node_obj.rewrite)# Re-writing the question
+        # Re-writing the question
+        self.graph.add_node("rewrite", self.agent_node_obj.rewrite)
         self.graph.add_node("generate", self.agent_node_obj.generate)
 
         # Generating a response after we know the documents are relevant
@@ -48,24 +48,21 @@ class GraphBuilder:
 
         # Decide whether to retrieve
         self.graph.add_conditional_edges("agent",
-                                    # Assess agent decision
-                                    tools_condition,
-                                    {
-                                        # Translate the condition outputs to nodes in our graph
-                                        "tools": "retrieve_tool",
-                                        END: END,
-                                    }
-        )
+                                         # Assess agent decision
+                                         tools_condition,
+                                         {
+                                             # Translate the condition outputs to nodes in our graph
+                                             "tools": "retrieve_tool",
+                                             END: END,
+                                         }
+                                         )
         # Edges taken after the `action` node is called.
-        self.graph.add_conditional_edges("retrieve_tool", self.agent_node_obj.grade_documents)
+        self.graph.add_conditional_edges(
+            "retrieve_tool", self.agent_node_obj.grade_documents)
         self.graph.add_edge("generate", END)
         self.graph.add_edge("rewrite", "agent")
 
         return self.graph
-
-
-
-
 
     def setup_graph(self):
         self.build_graph()
@@ -73,9 +70,9 @@ class GraphBuilder:
         return self.graph.compile()
 
 
-## Below code is for the langsmith, langgraph studio
-llm=GroqLLM().get_llm()
+# Below code is for the langsmith, langgraph studio
+llm = GroqLLM().get_llm()
 
-## get the graph
+# get the graph
 graph_builder = GraphBuilder(llm)
-graph=graph_builder.build_graph().compile()
+graph = graph_builder.build_graph().compile()

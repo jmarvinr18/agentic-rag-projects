@@ -1,6 +1,6 @@
 flask
-langchain
-langchain_community
+langchain[aws]
+langchain-community
 langchain-openai
 langchain-groq
 python-dotenv
@@ -8,11 +8,9 @@ flask-smorest
 flask-marshmallow
 sqlalchemy
 flask-sqlalchemy
-ipykernel
-flask_smorest
 sqlalchemy-utils
-langchain_openai
-langgraph-cli[inmem]
-wikipedia
-boto3
-langchain[aws]
+langgraph
+ipykernel
+langgraph-cli[inmem]>=0.4.3
+wikipedia>=1.4.0
+boto3>=1.42.97

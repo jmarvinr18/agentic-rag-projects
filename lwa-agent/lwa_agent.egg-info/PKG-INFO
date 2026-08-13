@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: lwa-agent
+Version: 0.1.0
+Summary: LangGraph Agent with RAG
+Requires-Python: >=3.9
+Requires-Dist: flask
+Requires-Dist: langchain[aws]
+Requires-Dist: langchain-community
+Requires-Dist: langchain-openai
+Requires-Dist: langchain-groq
+Requires-Dist: python-dotenv
+Requires-Dist: flask-smorest
+Requires-Dist: flask-marshmallow
+Requires-Dist: sqlalchemy
+Requires-Dist: flask-sqlalchemy
+Requires-Dist: sqlalchemy-utils
+Requires-Dist: langgraph
+Requires-Dist: ipykernel
+Requires-Dist: langgraph-cli[inmem]>=0.4.3
+Requires-Dist: wikipedia>=1.4.0
+Requires-Dist: boto3>=1.42.97
