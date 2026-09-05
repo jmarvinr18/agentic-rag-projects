@@ -9,13 +9,16 @@ from app.tools.math_operations import add, multiply
 from app.tools.web_browse import get_tools, create_tool_node
 from app.tools.wikisearch import wikisearch
 from app.llms.groq import GroqLLM
-
+from app.llms.bedrock import BedrockLLM
 
 class AgentNode:
 
     def __init__(self):
         
-        self.llm = GroqLLM().get_llm()
+        # self.llm = GroqLLM().get_llm()
+        self.llm = BedrockLLM().get_llm()
+
+        
 
 
     def invoke_agent(self, state):

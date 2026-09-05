@@ -10,8 +10,8 @@ RUN rm -rf /tmp/uv_export
 # -- End of uv.lock dependencies install --
 
 # -- Adding workspace package . --
-ADD .cache /deps/workspace/.cache
-ADD .env /deps/workspace/.env
+# ADD .cache /deps/workspace/.cache
+# ADD .env /deps/workspace/.env
 ADD .flaskenv /deps/workspace/.flaskenv
 ADD .python-version /deps/workspace/.python-version
 ADD README.md /deps/workspace/README.md

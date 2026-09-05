@@ -1,0 +1,122 @@
+default_agent: agent
+agents:
+  app_agent_main:
+    name: app_agent_main
+    language: python
+    node_version: '20'
+    entrypoint: /mnt/c/Users/USER/Documents/machine-learning/projects/agentic-rag-projects/lwa-agent/app/agent/main.py
+    deployment_type: container
+    runtime_type: null
+    platform: linux/arm64
+    container_runtime: none
+    source_path: /mnt/c/Users/USER/Documents/machine-learning/projects/agentic-rag-projects/lwa-agent
+    aws:
+      execution_role: arn:aws:iam::792682046440:role/AmazonBedrockAgentCoreSDKRuntime-ap-southeast-1-0e2644403a
+      execution_role_auto_create: false
+      account: '792682046440'
+      region: ap-southeast-1
+      ecr_repository: 792682046440.dkr.ecr.ap-southeast-1.amazonaws.com/bedrock-agentcore-app_agent_main
+      ecr_auto_create: false
+      s3_path: null
+      s3_auto_create: false
+      network_configuration:
+        network_mode: PUBLIC
+        network_mode_config: null
+      protocol_configuration:
+        server_protocol: HTTP
+      observability:
+        enabled: true
+      lifecycle_configuration:
+        idle_runtime_session_timeout: null
+        max_lifetime: null
+    bedrock_agentcore:
+      agent_id: app_agent_main-B0F3aD22E0
+      agent_arn: arn:aws:bedrock-agentcore:ap-southeast-1:792682046440:runtime/app_agent_main-B0F3aD22E0
+      agent_session_id: 9842adab-e9ae-49e7-ba9b-7810abaee617
+    codebuild:
+      project_name: bedrock-agentcore-app_agent_main-builder
+      execution_role: arn:aws:iam::792682046440:role/AmazonBedrockAgentCoreSDKCodeBuild-ap-southeast-1-0e2644403a
+      source_bucket: bedrock-agentcore-codebuild-sources-792682046440-ap-southeast-1
+    memory:
+      mode: STM_ONLY
+      memory_id: app_agent_main_mem-qfSln73ZCI
+      memory_arn: arn:aws:bedrock-agentcore:ap-southeast-1:792682046440:memory/app_agent_main_mem-qfSln73ZCI
+      memory_name: app_agent_main_mem
+      event_expiry_days: 30
+      first_invoke_memory_check_done: true
+      was_created_by_toolkit: false
+    identity:
+      credential_providers: []
+      workload: null
+    aws_jwt:
+      enabled: false
+      audiences: []
+      signing_algorithm: ES384
+      issuer_url: null
+      duration_seconds: 300
+    authorizer_configuration: null
+    request_header_configuration: null
+    oauth_configuration: null
+    api_key_env_var_name: null
+    api_key_credential_provider_name: null
+    is_generated_by_agentcore_create: false
+  agent:
+    name: agent
+    language: python
+    node_version: '20'
+    entrypoint: /mnt/c/Users/USER/Documents/machine-learning/projects/agentic-rag-projects/lwa-agent/agent.py
+    deployment_type: container
+    runtime_type: null
+    platform: linux/arm64
+    container_runtime: none
+    source_path: /mnt/c/Users/USER/Documents/machine-learning/projects/agentic-rag-projects/lwa-agent
+    aws:
+      execution_role: arn:aws:iam::792682046440:role/AmazonBedrockAgentCoreSDKRuntime-ap-southeast-1-d4f0bc5a29
+      execution_role_auto_create: false
+      account: '792682046440'
+      region: ap-southeast-1
+      ecr_repository: 792682046440.dkr.ecr.ap-southeast-1.amazonaws.com/bedrock-agentcore-agent
+      ecr_auto_create: false
+      s3_path: null
+      s3_auto_create: false
+      network_configuration:
+        network_mode: PUBLIC
+        network_mode_config: null
+      protocol_configuration:
+        server_protocol: HTTP
+      observability:
+        enabled: true
+      lifecycle_configuration:
+        idle_runtime_session_timeout: null
+        max_lifetime: null
+    bedrock_agentcore:
+      agent_id: agent-x2SlES9iwV
+      agent_arn: arn:aws:bedrock-agentcore:ap-southeast-1:792682046440:runtime/agent-x2SlES9iwV
+      agent_session_id: null
+    codebuild:
+      project_name: bedrock-agentcore-agent-builder
+      execution_role: arn:aws:iam::792682046440:role/AmazonBedrockAgentCoreSDKCodeBuild-ap-southeast-1-d4f0bc5a29
+      source_bucket: bedrock-agentcore-codebuild-sources-792682046440-ap-southeast-1
+    memory:
+      mode: STM_AND_LTM
+      memory_id: app_agent_main_mem-qfSln73ZCI
+      memory_arn: null
+      memory_name: agent_memory
+      event_expiry_days: 30
+      first_invoke_memory_check_done: false
+      was_created_by_toolkit: false
+    identity:
+      credential_providers: []
+      workload: null
+    aws_jwt:
+      enabled: false
+      audiences: []
+      signing_algorithm: ES384
+      issuer_url: null
+      duration_seconds: 300
+    authorizer_configuration: null
+    request_header_configuration: null
+    oauth_configuration: null
+    api_key_env_var_name: null
+    api_key_credential_provider_name: null
+    is_generated_by_agentcore_create: false

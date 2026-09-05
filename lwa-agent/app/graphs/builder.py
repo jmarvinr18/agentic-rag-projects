@@ -1,5 +1,8 @@
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
+
+from app.config import load_secrets
+load_secrets()
 
 from langgraph.graph import StateGraph, START, END
 from app.llms.groq import GroqLLM
@@ -12,6 +15,9 @@ from app.tools.math_operations import add, multiply
 from app.tools.web_browse import get_tools, create_tool_node
 from app.tools.wikisearch import wikisearch
 from IPython.display import Image, display
+from app.llms.bedrock import BedrockLLM
+from langgraph.checkpoint.memory import MemorySaver
+
 
 class GraphBuilder:
     def __init__(self, llm):
@@ -70,11 +76,11 @@ class GraphBuilder:
     def setup_graph(self):
         self.build_graph()
 
-        return self.graph.compile()
+        return self.graph.compile(checkpointer=MemorySaver())
 
 
 ## Below code is for the langsmith, langgraph studio
-llm=GroqLLM().get_llm()
+llm=BedrockLLM().get_llm()
 
 ## get the graph
 graph_builder = GraphBuilder(llm)

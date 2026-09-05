@@ -15,3 +15,8 @@ langchain_openai
 langgraph-cli[inmem]
 wikipedia
 boto3
+bedrock-agentcore
+bedrock-agentcore
+langchain-aws
+langchain-tavily
+# faiss-gpu
