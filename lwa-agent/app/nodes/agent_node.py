@@ -25,7 +25,6 @@ class AgentNode:
         """
             Invokes the agent model to generate a response based on the current state. Given the question, it will
             decide to retrieve using the retriever tool, or simply end.
-
             Args:
                 state (messages): The current state
             Returns:
@@ -47,7 +46,6 @@ class AgentNode:
     def grade_documents(self, state) -> Literal["generate","rewrite"]:
         """
             Determines whether the retrieved documents are relevant to the question.
-
             Args:
                 state (messages): The current state
             Returns:
@@ -68,10 +66,10 @@ class AgentNode:
         # Prompt
         prompt=PromptTemplate(
             template="""You are a grader assessing relevance of a retrieved document to a user question. \n
-            Here is the retrieved document: \n\n {context} \n\n
-            Here is the user question: {question} \n
-            If the document contains keyword(s) or semantic meaning related to the user question, grade it as relevant. \n
-            Give a binary score 'yes' or 'no' score to indicate whether the document is releavant to the question.
+                Here is the retrieved document: \n\n {context} \n\n
+                Here is the user question: {question} \n
+                If the document contains keyword(s) or semantic meaning related to the user question, grade it as relevant. \n
+                Give a binary score 'yes' or 'no' score to indicate whether the document is releavant to the question.
             """,
             input_variables=["context", "question"],
         )
@@ -111,12 +109,13 @@ class AgentNode:
         msg = [
             HumanMessage(
                 content=f""" \n
-                Look at the input and try to reason about the underlying semantic intent / meaning. \n
-                Here is the initial question:
-                \n ------- \n
-                {question}
-                \n ------- \n
-                Formulate an improved question: """,
+                    Look at the input and try to reason about the underlying semantic intent / meaning. \n
+                    Here is the initial question:
+                    \n ------- \n
+                    {question}
+                    \n ------- \n
+                    Formulate an improved question: 
+                """,
             )
         ]
         # Grader
@@ -125,12 +124,11 @@ class AgentNode:
 
     def generate(self, state):
         """
-        Generate answer
-
-        Args:
-            state (messages): The current state
-        Returns:
-            dict: The updated message
+            Generate answer
+            Args:
+                state (messages): The current state
+            Returns:
+                dict: The updated message
         """
         print("---GENERATE---")
         messages = state["messages"]
