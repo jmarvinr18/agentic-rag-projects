@@ -3,5 +3,5 @@ commands.txt
 .venv
 .env
 __pycache__/*
-*/__pycache__
+*/__pycache__/*
 .terraform*
