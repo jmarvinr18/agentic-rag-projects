@@ -20,7 +20,10 @@ async def invoke(payload, context):
         {"messages": [{"role": "user", "content": payload["prompt"]}]},
         config={"configurable": {"thread_id": context.session_id}},
     )
-    return {"result": result["messages"][-1].content}
+    return {
+        "result": result["messages"][-1].content,
+        "messages": [m.model_dump(mode="json") for m in result["messages"]],
+    }
 
 if __name__ == "__main__":
     app.run()

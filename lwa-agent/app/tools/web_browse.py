@@ -1,6 +1,7 @@
 from langchain_community.tools.tavily_search import TavilySearchResults
 from langgraph.prebuilt import ToolNode
-
+from app.config import load_secrets
+load_secrets()
 
 def get_tools():
     """

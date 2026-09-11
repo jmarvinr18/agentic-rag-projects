@@ -1,6 +1,7 @@
 README.md
 pyproject.toml
 app/__init__.py
+app/config.py
 app/agent/__init__.py
 app/agent/main.py
 app/embeddings/aws/s3vector.py
